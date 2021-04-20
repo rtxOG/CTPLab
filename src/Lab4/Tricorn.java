@@ -1,22 +1,21 @@
 package Lab4;
 
-import java.awt.geom.*;
+import java.awt.geom.Rectangle2D;
 
-public class Mandelbrot extends FractalGenerator{
+public class Tricorn extends FractalGenerator{
     public static final int MAX_ITERATIONS = 200;
 
-    // Установка начальных условий
     public void getInitialRange(Rectangle2D.Double range)
     {
         range.x = -2;
-        range.y = -1.5;
-        range.width = 3;
-        range.height = 3;
+        range.y = -2;
+        range.width = 4;
+        range.height = 4;
     }
 
-    // Вернуть количество итераций для конкретной точки
     public int numIterations(double x, double y)
     {
+
         int iteration = 0;
 
         double zReal = 0;
@@ -25,12 +24,12 @@ public class Mandelbrot extends FractalGenerator{
         while (iteration < MAX_ITERATIONS && zReal * zReal + zImaginary * zImaginary < 4)
         {
             double zRealUpdated = zReal * zReal - zImaginary * zImaginary + x;
-            double zImaginaryUpdated = 2 * zReal * zImaginary + y;
-
+            double zImaginaryUpdated = -2 * zReal * zImaginary + y;
             zReal = zRealUpdated;
             zImaginary = zImaginaryUpdated;
             iteration += 1;
         }
+
 
         if (iteration == MAX_ITERATIONS)
         {
@@ -39,7 +38,8 @@ public class Mandelbrot extends FractalGenerator{
 
         return iteration;
     }
+
     public String toString() {
-        return "Mandelbrot";
+        return "Tricorn";
     }
 }
